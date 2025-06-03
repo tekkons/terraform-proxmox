@@ -78,10 +78,12 @@ variable "memory" {
 
 variable "network_device" {
   type = string
+  default = "vmbr0"
 }
 
 variable "datastore_id" {
   type = string
+  default = "vms"
 }
 
 variable "ipv4_address" {

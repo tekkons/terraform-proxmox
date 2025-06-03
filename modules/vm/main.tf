@@ -37,7 +37,7 @@ resource "proxmox_virtual_environment_vm" "this" {
   dynamic "disk" {
     for_each = var.disk != null ? [var.disk] : []
     content {
-      datastore_id = disk.value["datastore_id"]
+      datastore_id = var.datastore_id
       file_id      = disk.value["file_id"]
       interface    = disk.value["interface"]
       discard      = disk.value["discard"]
