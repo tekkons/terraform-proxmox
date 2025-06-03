@@ -1,7 +1,7 @@
 module "demo" {
   source = "./modules/vm"
 
-  vm_id = 100
+  vm_id    = 100
   hostname = "demo"
 
   ssh_keys = local.ssh_public_keys
@@ -18,13 +18,13 @@ module "demo" {
   memory    = "1024"
 
   disk = {
-    file_id = module.images.image_ids[0]
+    file_id   = module.images.image_ids[0]
     interface = "scsi0"
-    discard = "on"
-    iothread = "true"
-    size = 16
-    ssd = true
-    cache = "writeback"
+    discard   = "on"
+    iothread  = "true"
+    size      = 16
+    ssd       = true
+    cache     = "writeback"
   }
 
   ipv4_address = "192.168.1.10"

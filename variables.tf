@@ -16,7 +16,7 @@ variable "proxmox_insecure" {
 }
 
 variable "proxmox_username" {
-  type    = string
+  type = string
 }
 
 variable "proxmox_agent" {

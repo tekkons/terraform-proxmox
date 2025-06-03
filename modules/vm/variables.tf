@@ -77,12 +77,12 @@ variable "memory" {
 }
 
 variable "network_device" {
-  type = string
+  type    = string
   default = "vmbr0"
 }
 
 variable "datastore_id" {
-  type = string
+  type    = string
   default = "vms"
 }
 
@@ -99,27 +99,27 @@ variable "disk" {
 }
 
 variable "operating_system" {
-  type = string
+  type    = string
   default = "l26"
 }
 
 variable "agent_enabled" {
-  type = string
+  type    = string
   default = "true"
 }
 
 variable "agent_timeout" {
-  type = string
+  type    = string
   default = "2m"
 }
 
 variable "serial_device" {
-  type = string
+  type    = string
   default = "socket"
 }
 
 variable "vga_type" {
-  type = string
+  type    = string
   default = "serial0"
 }
 
