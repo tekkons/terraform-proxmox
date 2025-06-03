@@ -77,3 +77,23 @@ resource "proxmox_virtual_environment_vm" "this" {
     proxmox_virtual_environment_file.cloudinit_config
   ]
 }
+
+resource "null_resource" "wait_for_cloudinit_configuration" {
+  connection {
+    type        = "ssh"
+    user        = "root"
+    host        = trimsuffix(proxmox_virtual_environment_vm.this.initialization[0].ip_config[0].ipv4[0].address, "/24")
+    private_key = file(var.ssh_private_key_file)
+    timeout     = "15"
+  }
+
+  provisioner "remote-exec" {
+    inline = [
+      "until [ -f /var/lib/cloud/instance/boot-finished ]; do echo 'Waiting for Cloud-Init...'; sleep 10; done"
+    ]
+  }
+
+  depends_on = [
+    proxmox_virtual_environment_vm.this
+  ]
+}
