@@ -1,0 +1,29 @@
+#cloud-config
+hostname: ${hostname}
+preserve_hostname: false
+user: root
+disable_root: false
+ssh_authorized_keys:
+%{ for key in ssh_keys ~}
+  - ${key}
+%{ endfor ~}
+chpasswd:
+  expire: false
+users:
+  - default
+packages:
+%{ for pkg in packages ~}
+  - ${pkg}
+%{ endfor ~}
+  - qemu-guest-agent
+package_update: true
+package_upgrade: true
+package_reboot_if_required: false
+locale: en_US.UTF-8
+timezone: America/New_York
+runcmd:
+  - sed -i 's/[#]*PermitRootLogin prohibit-password/PermitRootLogin yes/g' /etc/ssh/sshd_config
+  - sed -i 's/[#]*PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config
+  - systemctl restart sshd.service
+  - systemctl start qemu-guest-agent.service
+  - localectl set-locale LANG=en_US.UTF-8

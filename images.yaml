@@ -1,0 +1,4 @@
+- file_name: debian-12-generic-amd64.img
+  url: https://cloud.debian.org/images/cloud/bookworm/20250528-2126/debian-12-generic-amd64-20250528-2126.qcow2
+  checksum: 790b29c10c54c926c2aaef2583f5cc9b356d0c0fb6e9884c3f33fec78b1612407c920718a827da8f65a22065479764c41812d545bae8a4ece6a49a2e8ed746ce
+  checksum_algorithm: sha512
