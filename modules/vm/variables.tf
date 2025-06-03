@@ -73,7 +73,7 @@ variable "cpu_type" {
 }
 
 variable "memory" {
-  type = string
+  type = number
 }
 
 variable "network_device" {

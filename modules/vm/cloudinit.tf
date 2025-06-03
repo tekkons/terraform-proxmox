@@ -8,7 +8,7 @@ resource "proxmox_virtual_environment_file" "cloudinit_config" {
   source_raw {
     file_name = "${var.vm_id}-${var.hostname}-cloud-config.yaml"
     data = templatefile(
-      "${path.module}/templates/cloud-config.yaml.tftpl", {
+      "${path.module}/../../templates/cloud-config.yaml.tftpl", {
         hostname = var.hostname
         ssh_keys = var.ssh_keys
         packages = var.packages

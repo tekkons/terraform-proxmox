@@ -15,7 +15,7 @@ module "demo" {
 
   cpu_cores = 1
   cpu_type  = "x86-64-v2"
-  memory    = "1024"
+  memory    = 1024
 
   disk = {
     file_id   = module.images.image_ids[0]
@@ -27,7 +27,7 @@ module "demo" {
     cache     = "writeback"
   }
 
-  ipv4_address = "192.168.1.10"
+  ipv4_address = "192.168.1.10/24"
   ipv4_gateway = "192.168.1.1"
 
   ssh_private_key_file = local.ssh_private_key_file
