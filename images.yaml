@@ -1,4 +1,10 @@
-- file_name: debian-12-generic-amd64.img
-  url: https://cloud.debian.org/images/cloud/bookworm/20250528-2126/debian-12-generic-amd64-20250528-2126.qcow2
+debian12:
+  file_name: debian-12-genericcloud-amd64.img
+  url: https://cloud.debian.org/images/cloud/bookworm/20250528-2126/debian-12-genericcloud-amd64-20250528-2126.qcow2
   checksum: 790b29c10c54c926c2aaef2583f5cc9b356d0c0fb6e9884c3f33fec78b1612407c920718a827da8f65a22065479764c41812d545bae8a4ece6a49a2e8ed746ce
+  checksum_algorithm: sha512
+debian13:
+  file_name: debian-13-genericcloud-amd64.img
+  url: https://cloud.debian.org/images/cloud/trixie/20250814-2204/debian-13-genericcloud-amd64-20250814-2204.qcow2
+  checksum: d76122c87c940d1ab9334f4307c98c01dc42f0b49a20cddf278d59b92d34ab63d05ac1f40dffda3d2d32e381f097706eee6ccbf79a596bfb2cbb3d83c635ae35
   checksum_algorithm: sha512

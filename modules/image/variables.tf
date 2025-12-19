@@ -1,10 +1,5 @@
 variable "images" {
-  type = list(object({
-    file_name          = string
-    url                = string
-    checksum           = optional(string)
-    checksum_algorithm = optional(string)
-  }))
+  type = map(map(string))
 }
 
 variable "content_type" {

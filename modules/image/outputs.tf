@@ -1,3 +1,3 @@
 output "image_ids" {
-  value = [for img in proxmox_virtual_environment_download_file.cloud_image : img.id]
+  value = { for k, v in proxmox_virtual_environment_download_file.cloud_image : k => v.id }
 }
