@@ -1,6 +1,5 @@
 #cloud-config
 hostname: ${hostname}
-preserve_hostname: false
 user: root
 disable_root: false
 ssh_authorized_keys:
@@ -12,10 +11,12 @@ chpasswd:
 users:
   - default
 packages:
+  - qemu-guest-agent
+%{ if packages != [] ~}
 %{ for pkg in packages ~}
   - ${pkg}
 %{ endfor ~}
-  - qemu-guest-agent
+%{ endif ~}
 package_update: true
 package_upgrade: true
 package_reboot_if_required: false

@@ -13,17 +13,13 @@ variable "cloudinit_datastore_id" {
   default = "local"
 }
 
-variable "node_name" {
-  type    = string
-  default = "proxmox"
-}
-
-variable "ssh_keys" {
+variable "cloudinit_ssh_keys" {
   type = list(string)
 }
 
-variable "packages" {
-  type = list(string)
+variable "cloudinit_packages" {
+  type    = list(string)
+  default = []
 }
 
 variable "vm_id" {
@@ -34,9 +30,17 @@ variable "hostname" {
   type = string
 }
 
+variable "node_name" {
+  type    = string
+  default = "proxmox"
+}
+
 variable "description" {
   type    = string
-  default = "Managed by Terraform"
+  default = <<-EOT
+    Managed by Terraform<br>
+    <br>
+  EOT
 }
 
 variable "scsi_hardware" {
@@ -65,7 +69,8 @@ variable "tags" {
 }
 
 variable "cpu_cores" {
-  type = number
+  type    = number
+  default = 1
 }
 
 variable "cpu_type" {
@@ -74,7 +79,8 @@ variable "cpu_type" {
 }
 
 variable "memory" {
-  type = number
+  type    = number
+  default = 512
 }
 
 variable "network_device" {
@@ -122,4 +128,9 @@ variable "serial_device" {
 variable "vga_type" {
   type    = string
   default = "serial0"
+}
+
+variable "ssh_username" {
+  type    = string
+  default = "root"
 }

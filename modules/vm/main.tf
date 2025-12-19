@@ -81,7 +81,7 @@ resource "proxmox_virtual_environment_vm" "this" {
 resource "null_resource" "wait_for_cloudinit_configuration" {
   connection {
     type    = "ssh"
-    user    = "root"
+    user    = var.ssh_username
     host    = trimsuffix(proxmox_virtual_environment_vm.this.initialization[0].ip_config[0].ipv4[0].address, "/24")
     timeout = "15"
     agent   = true
