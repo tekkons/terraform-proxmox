@@ -70,6 +70,7 @@ variable "cpu_cores" {
 
 variable "cpu_type" {
   type = string
+  default = "host"
 }
 
 variable "memory" {
@@ -121,8 +122,4 @@ variable "serial_device" {
 variable "vga_type" {
   type    = string
   default = "serial0"
-}
-
-variable "ssh_private_key_file" {
-  type = string
 }

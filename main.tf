@@ -11,14 +11,13 @@ module "demo" {
     "Managed by Terraform"
   EOT
 
-  tags = ["demo", "debian12", "cloud-init", "terraform"]
+  tags = ["demo", "debian13", "cloud-init", "terraform"]
 
   cpu_cores = 1
-  cpu_type  = "x86-64-v2"
   memory    = 1024
 
   disk = {
-    file_id   = module.images.image_ids[0]
+    file_id   = module.images.image_ids["debian13"]
     interface = "scsi0"
     discard   = "on"
     iothread  = "true"
@@ -29,6 +28,4 @@ module "demo" {
 
   ipv4_address = "192.168.1.10/24"
   ipv4_gateway = "192.168.1.1"
-
-  ssh_private_key_file = local.ssh_private_key_file
 }

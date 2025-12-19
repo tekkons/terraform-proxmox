@@ -15,11 +15,21 @@ variable "proxmox_insecure" {
   default = true
 }
 
-variable "proxmox_username" {
-  type = string
-}
-
 variable "proxmox_agent" {
   type    = bool
   default = true
+}
+
+variable "proxmox_username" {
+  type = string
+  default = "root"
+}
+
+variable "proxmox_ssh_node_name" {
+  type = string
+  default = "proxmox"
+}
+
+variable "proxmox_ssh_node_address" {
+  type = string
 }

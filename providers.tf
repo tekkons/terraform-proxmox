@@ -4,8 +4,13 @@ provider "proxmox" {
   insecure  = var.proxmox_insecure
 
   ssh {
-    username = var.proxmox_username
     agent    = var.proxmox_agent
+    username = var.proxmox_username
+
+    node {
+      name    = var.proxmox_ssh_node_name
+      address = var.proxmox_ssh_node_address
+    }
   }
 }
 
