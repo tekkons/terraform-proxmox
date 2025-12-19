@@ -69,7 +69,7 @@ variable "cpu_cores" {
 }
 
 variable "cpu_type" {
-  type = string
+  type    = string
   default = "host"
 }
 

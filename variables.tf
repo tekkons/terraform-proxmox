@@ -21,12 +21,12 @@ variable "proxmox_agent" {
 }
 
 variable "proxmox_username" {
-  type = string
+  type    = string
   default = "root"
 }
 
 variable "proxmox_ssh_node_name" {
-  type = string
+  type    = string
   default = "proxmox"
 }
 
