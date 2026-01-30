@@ -4,8 +4,8 @@ module "demo" {
   vm_id    = 100
   hostname = "demo"
 
-  cloudinit_ssh_keys = local.ssh_public_keys
-  cloudinit_packages = ["curl", "htop", "vim", "wget"]
+  cloudinit_ssh_public_keys = local.ssh_public_keys
+  cloudinit_common_tools    = ["curl", "htop", "vim", "wget"]
 
   description = <<-EOT
     "Managed by Terraform"
@@ -28,4 +28,9 @@ module "demo" {
 
   ipv4_address = "192.168.1.10/24"
   ipv4_gateway = "192.168.1.1"
+
+  dns = {
+    "domain"  = "example.com"
+    "servers" = ["1.1.1.1", "8.8.8.8"]
+  }
 }

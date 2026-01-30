@@ -13,11 +13,11 @@ variable "cloudinit_datastore_id" {
   default = "local"
 }
 
-variable "cloudinit_ssh_keys" {
+variable "cloudinit_ssh_public_keys" {
   type = list(string)
 }
 
-variable "cloudinit_packages" {
+variable "cloudinit_common_tools" {
   type    = list(string)
   default = []
 }
@@ -68,6 +68,16 @@ variable "tags" {
   default = ["cloud-init", "terraform"]
 }
 
+variable "started" {
+  type    = bool
+  default = true
+}
+
+variable "stop_on_destroy" {
+  type    = bool
+  default = true
+}
+
 variable "cpu_cores" {
   type    = number
   default = 1
@@ -99,6 +109,11 @@ variable "ipv4_address" {
 
 variable "ipv4_gateway" {
   type = string
+}
+
+variable "dns" {
+  type    = any
+  default = null
 }
 
 variable "disk" {

@@ -3,7 +3,7 @@ hostname: ${hostname}
 user: root
 disable_root: false
 ssh_authorized_keys:
-%{ for key in ssh_keys ~}
+%{ for key in ssh_public_keys ~}
   - ${key}
 %{ endfor ~}
 chpasswd:
@@ -12,8 +12,8 @@ users:
   - default
 packages:
   - qemu-guest-agent
-%{ if packages != [] ~}
-%{ for pkg in packages ~}
+%{ if common_tools != [] ~}
+%{ for pkg in common_tools ~}
   - ${pkg}
 %{ endfor ~}
 %{ endif ~}

@@ -1,13 +1,15 @@
 resource "proxmox_virtual_environment_vm" "this" {
-  vm_id         = var.vm_id
-  name          = var.hostname
-  node_name     = var.node_name
-  description   = var.description
-  scsi_hardware = var.scsi_hardware
-  boot_order    = var.boot_order
-  on_boot       = var.on_boot
-  protection    = var.protection
-  tags          = var.tags
+  vm_id           = var.vm_id
+  name            = var.hostname
+  node_name       = var.node_name
+  description     = var.description
+  scsi_hardware   = var.scsi_hardware
+  boot_order      = var.boot_order
+  on_boot         = var.on_boot
+  protection      = var.protection
+  tags            = var.tags
+  started         = var.started
+  stop_on_destroy = var.stop_on_destroy
 
   cpu {
     cores = var.cpu_cores
@@ -30,6 +32,14 @@ resource "proxmox_virtual_environment_vm" "this" {
       ipv4 {
         address = var.ipv4_address
         gateway = var.ipv4_gateway
+      }
+    }
+
+    dynamic "dns" {
+      for_each = var.dns != null ? [var.dns] : []
+      content {
+        domain  = dns.value["domain"]
+        servers = dns.value["servers"]
       }
     }
   }
