@@ -8,3 +8,8 @@ debian13:
   url: https://cloud.debian.org/images/cloud/trixie/20250814-2204/debian-13-genericcloud-amd64-20250814-2204.qcow2
   checksum: d76122c87c940d1ab9334f4307c98c01dc42f0b49a20cddf278d59b92d34ab63d05ac1f40dffda3d2d32e381f097706eee6ccbf79a596bfb2cbb3d83c635ae35
   checksum_algorithm: sha512
+rocky10:
+  file_name: Rocky-10-latest-x86_64-minimal.iso
+  url: https://download.rockylinux.org/pub/rocky/10/isos/x86_64/Rocky-10-latest-x86_64-minimal.iso
+  checksum: 5aafc2c86e606428cd7c5802b0d28c220f34c181a57eefff2cc6f65214714499
+  checksum_algorithm: sha256
