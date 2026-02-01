@@ -4,8 +4,8 @@ module "demo" {
   vm_id    = 100
   hostname = "demo"
 
-  cloudinit_ssh_public_keys = local.ssh_public_keys
-  cloudinit_common_tools    = ["curl", "htop", "vim", "wget"]
+  ssh_keys = local.ssh_keys
+  packages = local.packages
 
   description = <<-EOT
     "Managed by Terraform"

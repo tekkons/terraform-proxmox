@@ -13,11 +13,11 @@ variable "cloudinit_datastore_id" {
   default = "local"
 }
 
-variable "cloudinit_ssh_public_keys" {
+variable "ssh_keys" {
   type = list(string)
 }
 
-variable "cloudinit_common_tools" {
+variable "packages" {
   type    = list(string)
   default = []
 }
