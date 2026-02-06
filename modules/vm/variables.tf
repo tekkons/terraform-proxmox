@@ -14,7 +14,8 @@ variable "cloudinit_datastore_id" {
 }
 
 variable "ssh_keys" {
-  type = list(string)
+  type    = list(string)
+  default = []
 }
 
 variable "packages" {
@@ -22,17 +23,17 @@ variable "packages" {
   default = []
 }
 
-variable "vm_id" {
-  type = number
-}
-
-variable "hostname" {
-  type = string
-}
-
 variable "node_name" {
   type    = string
   default = "proxmox"
+}
+
+variable "name" {
+  type = string
+}
+
+variable "vm_id" {
+  type = number
 }
 
 variable "description" {
@@ -41,6 +42,11 @@ variable "description" {
     Managed by Terraform<br>
     <br>
   EOT
+}
+
+variable "tags" {
+  type    = list(string)
+  default = ["cloud-init", "terraform"]
 }
 
 variable "scsi_hardware" {
@@ -60,12 +66,7 @@ variable "on_boot" {
 
 variable "protection" {
   type    = bool
-  default = true
-}
-
-variable "tags" {
-  type    = list(string)
-  default = ["cloud-init", "terraform"]
+  default = false
 }
 
 variable "started" {
@@ -98,11 +99,6 @@ variable "network_device" {
   default = "vmbr0"
 }
 
-variable "datastore_id" {
-  type    = string
-  default = "vms"
-}
-
 variable "ipv4_address" {
   type = string
 }
@@ -116,18 +112,23 @@ variable "dns" {
   default = null
 }
 
+variable "datastore_id" {
+  type    = string
+  default = "vms"
+}
+
 variable "disk" {
   type = map(string)
 }
 
-variable "operating_system" {
+variable "operating_system_type" {
   type    = string
   default = "l26"
 }
 
 variable "agent_enabled" {
-  type    = string
-  default = "true"
+  type    = bool
+  default = true
 }
 
 variable "agent_timeout" {
@@ -143,9 +144,4 @@ variable "serial_device" {
 variable "vga_type" {
   type    = string
   default = "serial0"
-}
-
-variable "ssh_username" {
-  type    = string
-  default = "root"
 }

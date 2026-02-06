@@ -1,13 +1,13 @@
 resource "proxmox_virtual_environment_vm" "this" {
-  vm_id           = var.vm_id
-  name            = var.hostname
   node_name       = var.node_name
+  name            = var.name
+  vm_id           = var.vm_id
   description     = var.description
+  tags            = var.tags
   scsi_hardware   = var.scsi_hardware
   boot_order      = var.boot_order
   on_boot         = var.on_boot
   protection      = var.protection
-  tags            = var.tags
   started         = var.started
   stop_on_destroy = var.stop_on_destroy
 
@@ -45,21 +45,21 @@ resource "proxmox_virtual_environment_vm" "this" {
   }
 
   dynamic "disk" {
-    for_each = var.disk != null ? [var.disk] : []
+    for_each = [var.disk]
     content {
       datastore_id = var.datastore_id
       file_id      = disk.value["file_id"]
-      interface    = disk.value["interface"]
-      discard      = disk.value["discard"]
-      iothread     = disk.value["iothread"]
       size         = disk.value["size"]
-      ssd          = disk.value["ssd"]
-      cache        = disk.value["cache"]
+      interface    = lookup(disk.value, "interface", "scsi0")
+      discard      = lookup(disk.value, "discard", "on")
+      iothread     = lookup(disk.value, "iothread", true)
+      ssd          = lookup(disk.value, "ssd", true)
+      cache        = lookup(disk.value, "cache", "writeback")
     }
   }
 
   operating_system {
-    type = var.operating_system
+    type = var.operating_system_type
   }
 
   agent {
@@ -91,9 +91,9 @@ resource "proxmox_virtual_environment_vm" "this" {
 resource "null_resource" "wait_for_cloudinit_configuration" {
   connection {
     type    = "ssh"
-    user    = var.ssh_username
+    user    = "root"
     host    = trimsuffix(proxmox_virtual_environment_vm.this.initialization[0].ip_config[0].ipv4[0].address, "/24")
-    timeout = "15"
+    timeout = "30"
     agent   = true
   }
 
